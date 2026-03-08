@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>For Drishti 🌸</title>
+
+<style>
+
+body{
+margin:0;
+font-family:'Segoe UI',sans-serif;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(-45deg,#ff9ac6,#ffd6e8,#ffc3a0,#ffafbd);
+background-size:400% 400%;
+animation:bg 10s ease infinite;
+overflow:hidden;
+transition:0.5s;
+}
+
+body.dark{
+background:linear-gradient(-45deg,#0f2027,#203a43,#2c5364);
+}
+
+@keyframes bg{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+.container{
+background:rgba(255,255,255,0.93);
+padding:40px;
+border-radius:20px;
+width:70%;
+max-width:720px;
+text-align:center;
+box-shadow:0 15px 40px rgba(0,0,0,0.25);
+}
+
+/* glowing title */
+
+.name{
+font-size:42px;
+font-weight:bold;
+color:#ff2e8b;
+animation:glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow{
+from{ text-shadow:0 0 10px #ff8ccf;}
+to{ text-shadow:0 0 25px #ff2e8b;}
+}
+
+button{
+margin-top:15px;
+padding:12px 25px;
+font-size:16px;
+border:none;
+border-radius:25px;
+background:#ff2e8b;
+color:white;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.08);
+}
+
+#message{
+margin-top:20px;
+font-size:18px;
+line-height:1.6;
+white-space:pre-line;
+}
+
+#hug{
+margin-top:18px;
+font-size:22px;
+display:none;
+}
+
+.footer{
+margin-top:25px;
+font-size:14px;
+color:#555;
+}
+
+.flower{
+position:absolute;
+font-size:22px;
+animation:fall 6s linear infinite;
+}
+
+@keyframes fall{
+0%{transform:translateY(-10vh);}
+100%{transform:translateY(110vh);}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="name">Drishti 🌸</div>
+
+<p>This little page was made specially for you by your Bbu.</p>
+
+<button onclick="start()">Open Message 💌</button>
+<br>
+<button onclick="toggleNight()">🌙 Night Mode</button>
+<br>
+<button onclick="hug()">🤗 Tap for a Hug</button>
+
+<div id="message"></div>
+<div id="hug">Your Bbu is sending you the biggest warm hug 🤗💖</div>
+
+<div class="footer">Made with care by Bbu ❤️</div>
+
+</div>
+
+<audio id="music" loop>
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3">
+</audio>
+
+<script>
+
+let text = `Drishti,
+
+Your Bbu made this little page just for you.
+
+I heard you're not feeling well right now and I truly hope you recover very soon. Please take proper rest and take care of yourself because your health matters the most right now.
+
+Mumma, please don't take any tension about anything. Everything will be okay and your papers will go well. Just stay calm and focus on getting better I am Always
+  Here for you Love you soo much.
+
+Please eat properly, drink water, and give your body the rest it needs. I will keep you in my prayers and I sincerely hope that you recover quickly and feel healthy again.
+
+You are strong and I know you will be perfectly fine very soon.
+
+Just remember that someone cares about you a lot and wants to see your beautiful smile again very soon.
+
+Get well soon mumma.
+
+Your Bbu 💫`;
+
+let i=0;
+
+function start(){
+document.getElementById("music").play();
+confetti();
+type();
+}
+
+function type(){
+if(i<text.length){
+document.getElementById("message").innerHTML+=text.charAt(i);
+i++;
+setTimeout(type,30);
+}
+}
+
+function toggleNight(){
+document.body.classList.toggle("dark");
+}
+
+function hug(){
+document.getElementById("hug").style.display="block";
+}
+
+function createFlower(){
+const f=document.createElement("div");
+f.classList.add("flower");
+f.innerHTML="🌸";
+f.style.left=Math.random()*100+"vw";
+f.style.fontSize=(15+Math.random()*20)+"px";
+f.style.animationDuration=(4+Math.random()*4)+"s";
+document.body.appendChild(f);
+
+setTimeout(()=>{f.remove();},7000);
+}
+
+setInterval(createFlower,400);
+
+function confetti(){
+for(let i=0;i<80;i++){
+let c=document.createElement("div");
+c.innerHTML="✨";
+c.style.position="absolute";
+c.style.left=Math.random()*100+"vw";
+c.style.top="-10px";
+c.style.fontSize="20px";
+c.style.animation="fall 3s linear";
+document.body.appendChild(c);
+
+setTimeout(()=>{c.remove();},3000);
+}
+}
+
+</script>
+
+</body>
+</html>
